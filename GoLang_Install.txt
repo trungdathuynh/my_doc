@@ -1,0 +1,70 @@
+* Bước 1: Cài đặt Go runtime
+ - Windows
+	Đối với các bạn dùng Windows, cài bằng bộ cài MSI sẽ tiện hơn, nó sẽ tự động config hết mọi thứ cần thiết.
+
+	Đầu tiên, tải bộ cài tại đây https://golang.org/dl và chạy file go<version>.windows-386.msi (32 bit) hoặc go<version>.windows-amd64.msi (64 bit), tuỳ vào hệ điều hành bạn đang sử dụng.
+
+ - Linux và Mac OS X
+	Với các bạn xài môi trường Unix, chúng ta nên cài bằng dòng lệnh.
+	Chúng ta sẽ cài Go thông qua Homebrew (có thể bỏ qua nếu bạn đã cài trước rồi), khởi động Terminal lên và gõ:
+		+ Mac: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		+ Linux: sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+	Sau khi cài xong Homebrew, chúng ta bắt đầu cài Go với lệnh:
+		$ brew install go --cross-compile-common
+ - Mac OS X Installer
+	Trên Mac, nếu bạn không thích cài bằng dòng lệnh, có thể tải bộ cài từ trang chủ https://golang.org/dl/ và cài trực tiếp.
+	Go runtime sẽ được cài vào thư mục /usr/local/go và chúng ta cần setup biến môi trường (PATH) ở bước tiếp theo.
+
+* Bước 2: Cài đặt biến môi trường
+ - Windows
+	Trên Windows, chúng ta sẽ cài đặt biến môi trường bằng cách click phải vào My Computer chọn Properties, chọn tab Advanced và click nút Environment Variables.
+	Nếu bạn cài đặt Go vào thư mục mặc định là C:\Go thì bạn cần cấu hình như sau:
+		Tạo một biến mới tên là GOROOT với giá trị là C:\Go
+		Chọn biến PATH có sẵn, thêm vào sau dấu chấm phẩy ; cuối dòng đường dẫn sau: C:\Go\bin;
+ - Mac OS X
+	Trên các máy Unix, bạn cài đặt biến môi trường bằng cách chỉnh sửa file $HOME/.profile hoặc $HOME/.bash_profile.
+	Nếu không tìm thấy biến $HOME, có thể thay nó bằng /user/local
+		Hãy thêm nội dung sau:
+
+		export GOROOT=$HOME/go
+ 		export PATH=$PATH:$GOROOT/bin
+ - Linux:
+ 	+ cd /tmp
+ 	+ curl -LO https://storage.googleapis.com/golang/
+ 	+ go1.7.linux-amd64.tar.gz
+ 	+ sudo tar -C /usr/local -xvzf go1.7.linux-amd64.tar.gz
+ 	+ mkdir -p ~/projects/{bin,pkg,src}
+ 	+ sudo vi /etc/profile.d/path.sh
+ 		export PATH=$PATH:/usr/local/go/bin
+ 	+ vi ~/.bash_profile
+ 		export GOBIN="$HOME/projects/bin"
+		export GOPATH="$HOME/projects/src"
+		export GOROOT="/usr/local/go"
+	+ source /etc/profile && source ~/.bash_profile
+	+ vi ~/projects/src/hello.go : code here
+	+ go install $GOPATH/hello.go
+	+ $GOBIN/hello : run
+
+* Bước 3: Chạy thử
+	Bây giờ, chúng ta có thể kiểm tra xem Go đã được cài hoàn chỉnh hay chưa, bằng cách gõ lệnh sau vào Terminal (hoặc Command Line trên Windows):
+	$ go version
+	Nếu Go được cài đặt đầy đủ thì nội dung output sẽ giống thế này:
+	go version go1.4.2 darwin/amd64
+	Viết chương trình đầu tiên bằng Go
+
+	Chúng ta sẽ tạo một file mới, tên là hello.go và gõ đoạn chương trình sau vào.
+
+		package main
+
+		import "fmt"
+
+		func main() {
+		    fmt.Printf("Hello Gopher's World!")
+		}
+
+	Bây giờ hãy compile và chạy chương trình với lệnh:
+
+	$ go run hello.go
+	Output sẽ là:
+
+	Hello Gopher's World!

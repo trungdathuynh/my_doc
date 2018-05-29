@@ -3,3 +3,9 @@
 	- Lúc này nó sẽ về màn hình thiết lập cài đặt và bạn chọn “Network & Host Name” trong mục “System” để thiết lập đường internet cho máy chủ ảo. Lưu ý sau khi hiển thị như màn hình dưới đây bạn cần thiết lập cả 2 đường mạng để kết nối ra ngoài net , thiêt lập Adapter 1 và Adpater 2. Việc này rất quan trọng cho việc kết nối LAN và kết nối trên môi trường Internet. Để thiết lập bạn chọn “Etherent” và chọn “Configure”
 	- Lúc này bạn chuyển qua General và tích chọn “Automatically connect to this network when it is available“. Sau đó nhà nhấn “Save” để lưu lại. Bạn cần thiết lập cả 2 cổng Ethernet.
 * List ip: ip a
+* thong tin centos1:
+	+ user: root / root , dathuynh / behhuong
+	+ ssh : ssh root@192.168.1.123
+* install git centos: sudo yum install git
+* Update your system: yum -y update
+* Install wget package: yum -y install wget
